@@ -7,30 +7,44 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        h1 {
-            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f8ff;
         }
         .container {
-            border: 1px solid #ddd;
-            padding: 20px;
-            border-radius: 5px;
+            text-align: center;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        .status {
             margin-top: 20px;
+            padding: 10px;
+            background-color: #e7f7e7;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
-    <h1>Docker Deployment Demo</h1>
     <div class="container">
-        <h2>Automated Deployment with n8n</h2>
-        <p>This page was automatically deployed using GitHub webhooks and n8n workflows.</p>
-        <p>Last updated: <span id="timestamp"></span></p>
+        <h1>Docker Deployment Demo</h1>
+        <p>This project demonstrates automated Docker deployment using n8n workflows.</p>
+        <p>Repository: <a href="https://github.com/Rohit9619/docker-deploy-demo">docker-deploy-demo</a></p>
+        <div class="status">
+            <h3>Deployment Status</h3>
+            <p>Successfully deployed via n8n automation!</p>
+            <p>Last updated: <span id="timestamp"></span></p>
+        </div>
     </div>
-
     <script>
         document.getElementById('timestamp').textContent = new Date().toLocaleString();
     </script>
