@@ -1,20 +1,8 @@
-# Use official Node.js image
-FROM node:16-alpine
+# Use an Nginx base image
+FROM nginx:latest
 
-# Set working directory
-WORKDIR /app
+# Remove default index.html and copy our own
+COPY index.html /usr/share/nginx/html/index.html
 
-# Copy package files first for better caching
-COPY package*.json ./
-
-# Install dependencies
-RUN npm install
-
-# Copy the rest of the application code
-COPY . .
-
-# Expose the port the app runs on
-EXPOSE 3000
-
-# Command to run the application
-CMD ["npm", "start"]
+# Expose port 80
+EXPOSE 80
