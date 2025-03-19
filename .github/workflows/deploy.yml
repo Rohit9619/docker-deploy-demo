@@ -1,0 +1,29 @@
+name: Deploy to DockerHub
+
+on:
+  push:
+    branches:
+      - main  # Run this workflow when pushing to main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Build and push Docker image
+        run: |
+          docker build -t YOUR_DOCKERHUB_USERNAME/homepage:latest .
+          docker push YOUR_DOCKERHUB_USERNAME/homepage:latest
+
+      - name: Deploy container
+        run: |
+          docker run -d -p 80:80 YOUR_DOCKERHUB_USERNAME/homepage:latest
